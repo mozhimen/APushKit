@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 必须 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.meizu.flyme.permission.PUSH" />
+
+    <!-- 可选，需自行配置，用于兼容 Flyme5 且推送服务是旧版本的情况-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 可选，需自行配置，兼容 Flyme5 的权限配置-->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+    <permission
+        android:name="${applicationId}.push.permission.MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.push.permission.MESSAGE" />
+</manifest>

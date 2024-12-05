@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.engagelab.app">
+
+    <!-- 必须，网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 可选，通知震动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name="com.engagelab.app.MainApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MT"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m"> <!-- 如果使用http请求，则需要允许使用http -->
+
+        <activity
+            android:name="com.engagelab.app.activity.MainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|layoutDirection"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        &lt;!&ndash; 用于演示保活MTKeepalive的功能 &ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name="com.engagelab.app.activity.KeepaliveActivity"-->
+<!--            android:exported="false"-->
+<!--            android:windowSoftInputMode="adjustUnspecified|stateHidden" />-->
+
+        <!-- 用于演示MTPush的功能 -->
+        <activity
+            android:name="com.engagelab.app.activity.PushActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
+
+        <!-- 用于演示MTPush4.0.0版本开始的通知点击跳转 -->
+        <activity
+            android:name="com.engagelab.app.component.UserActivity400"
+            android:exported="false" /> <!--exported不需要为true，sdk内部已做中转 -->
+
+        <!-- 用于演示deepLink的通知点击跳转 -->
+        <!--        <activity-->
+        <!--            android:name="com.engagelab.app.component.UserActivity400"-->
+        <!--            android:exported="false" >-->
+        <!--            <intent-filter>-->
+        <!--                <data android:scheme="你的scheme"/>-->
+        <!--                <data android:host="你的host"/>-->
+        <!--                <action android:name="android.intent.action.VIEW" />-->
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <!--exported不需要为true，sdk内部已做中转 -->
+
+        <!--白名单本地中转验证:MTPush4.2.3版本开始,配置ENGAGELAB_PRIVATES_TRANSFER后,sdk会做本地验证;不配置就不做本地验证。如果开启本地验证，请将要跳转的目标Activity配置在这里;如果有多个目标Activity,请用/分割开。-->
+<!--        <meta-data-->
+<!--            android:name="ENGAGELAB_PRIVATES_TRANSFER"-->
+<!--            android:value="com.engagelab.app.component.UserActivity400" />-->
+
+        <!-- 用于演示自定义消息展示 -->
+        <activity
+            android:name="com.engagelab.app.component.CustomMessageActivity"
+            android:exported="false" />
+
+        <!-- 由于此类具有长连接功能，手机厂商省电优化时可能直接杀死包名带Engagelab字样的service -->
+        <!-- 所以需要开发者继承com.engagelab.app.component.MTCommonService，提升长连接存活率，已达到提高消息到达率的目的 -->
+        <service
+            android:name="com.engagelab.app.component.UserService"
+            android:exported="false"
+            android:process="${ENGAGELAB_PRIVATES_PROCESS}">
+            <intent-filter>
+                <action android:name="com.engagelab.privates.intent.USER_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <!-- 用于接收Engagelab业务的回调，包含了长连接状态/通知开关状态/通知消息到达/通知消息点击/通知消息删除/自定义消息/tag操作/alias操作/厂商token回调 -->
+        <!-- 不需要配置子进程，此回调中在主进程中，方便业务操作 -->
+        <receiver
+            android:name="com.engagelab.app.component.UserReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.engagelab.privates.intent.USER_RECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- google push need -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/mtpush_notification_icon" />
+
+        <!-- huawei push need -->
+        <meta-data
+            android:name="com.huawei.messaging.default_notification_icon"
+            android:resource="@drawable/mtpush_notification_icon" />
+
+    </application>
+
+</manifest>

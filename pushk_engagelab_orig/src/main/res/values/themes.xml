@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="Theme.MT" parent="android:Theme.Holo.NoActionBar">
+
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+</resources>

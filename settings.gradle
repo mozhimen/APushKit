@@ -1,0 +1,56 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/grails-core' }
+        maven { url 'https://raw.githubusercontent.com/saki4510t/libcommon/master/repository/' }
+        maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
+        maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://www.jitpack.io' }
+        // huawei push need
+        maven { url 'https://developer.huawei.com/repo/' }
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "APushKit"
+include ':app'
+include ':pushk_basic'
+include ':pushk_engagelab'
+include ':pushk_engagelab_google'
+include ':pushk_engagelab_honer'
+include ':pushk_engagelab_huawei'
+include ':pushk_engagelab_mi_global'
+include ':pushk_engagelab_meizu'
+include ':pushk_engagelab_oppo'
+include ':pushk_engagelab_vivo'
+include ':pushk_engagelab_othsound'
+include ':pushk_engagelab_test'
+include ':pushk_engagelab_orig'
+include ':pushk_engagelab_mi_inland'
+//SwiftKit
+include ':SwiftKit'
+project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
+include ':SwiftKit:basick'
+include ':SwiftKit:bindk'
+//KUtilKit
+include ':KUtilKit'
+project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
+include ':KUtilKit:utilk_android'
+include ':KUtilKit:utilk_kotlin'
+//ALibKit_Huawei
+include ':ALibKit_Huawei'
+project(':ALibKit_Huawei').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Huawei")
+include ':ALibKit_Huawei:hms_push'
+//ALibKit_Google
+include ':ALibKit_Google'
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:firebase_messaging'
+include ':pushk_engagelab_proguard'
