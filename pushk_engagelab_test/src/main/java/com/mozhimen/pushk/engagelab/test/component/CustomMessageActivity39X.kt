@@ -1,14 +1,11 @@
 package com.mozhimen.pushk.engagelab.test.component
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.TextView
 import android.widget.Toast
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
-import com.mozhimen.pushk.engagelab.test.R
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityIntentBinding
 import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 import org.json.JSONObject
@@ -22,12 +19,10 @@ import org.json.JSONObject
  */
 /**
  * 用于演示MTPush4.0.0之前-点击通知后activity跳转
- *
  * 确保已调用[MTPushPrivatesApi.configOldPushVersion]，否则通知点击跳转不会跳转到此页面
- *
  * 请调用[MTPushPrivatesApi.reportNotificationOpened]，上报通知点击打开activity，确保后台能统计
  */
-class UserActivity39X : BaseActivityVB<ActivityIntentBinding>() {
+class CustomMessageActivity39X : BaseActivityVB<ActivityIntentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         onIntent(intent)

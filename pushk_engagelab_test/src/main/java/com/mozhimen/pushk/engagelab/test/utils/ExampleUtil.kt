@@ -2,10 +2,10 @@ package com.mozhimen.pushk.engagelab.test.utils
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.text.TextUtils
 import com.engagelab.privates.common.component.MTCommonReceiver
 import com.engagelab.privates.common.component.MTCommonService
+import com.mozhimen.kotlin.utilk.wrapper.UtilKApp
 import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 
 /**
@@ -29,73 +29,28 @@ object ExampleUtil {
     private var appChannel: String? = null
     private var appProcess: String? = null
 
-    private var appVersionCode = 0
-    private var appVersionName: String? = null
-
     private var commonServiceName: String? = null
     private var commonReceiverName: String? = null
 
-    fun getAppVersionName(context: Context): String? {
-        if (!TextUtils.isEmpty(appVersionName)) {
-            return appVersionName
-        }
-        try {
-            val manager = context.packageManager
-            val info = manager.getPackageInfo(context.packageName, 0)
-            appVersionName = info.versionName
-            return appVersionName
-        } catch (throwable: Throwable) {
-            ExampleLogger.w(TAG, "getAppVersionName failed: " + throwable.message)
-        }
-        return ""
-    }
-
-    fun getAppVersionCode(context: Context): Int {
-        if (appVersionCode != 0) {
-            return appVersionCode
-        }
-        try {
-            val manager = context.packageManager
-            val info = manager.getPackageInfo(context.packageName, 0)
-            appVersionCode = info.versionCode
-            return appVersionCode
-        } catch (throwable: Throwable) {
-            ExampleLogger.w(TAG, "getAppVersionCode failed: " + throwable.message)
-        }
-        return 0
-    }
-
     fun getAppKey(context: Context): String? {
         if (TextUtils.isEmpty(appKey)) {
-            appKey = getMetaData(context, APP_KEY)
+            appKey = UtilKApp.getMetaDataStr(APP_KEY, context = context)
         }
         return appKey
     }
 
     fun getAppChannel(context: Context): String? {
         if (TextUtils.isEmpty(appChannel)) {
-            appChannel = getMetaData(context, APP_CHANNEL)
+            appChannel = UtilKApp.getMetaDataStr(APP_CHANNEL, context = context)
         }
         return appChannel
     }
 
     fun getAppProcess(context: Context): String? {
         if (TextUtils.isEmpty(appProcess)) {
-            appProcess = getMetaData(context, APP_PROCESS)
+            appProcess = UtilKApp.getMetaDataStr(APP_PROCESS, context = context)
         }
         return appProcess
-    }
-
-    fun getMetaData(context: Context, metaDataName: String?): String {
-        try {
-            val info = context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-            if (info?.metaData != null) {
-                return info.metaData[metaDataName].toString()
-            }
-        } catch (throwable: Throwable) {
-            ExampleLogger.w(TAG, "getMetaData failed " + throwable.message)
-        }
-        return ""
     }
 
     // ************************ Engagelab组件 ************************

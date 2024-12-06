@@ -18,7 +18,7 @@ import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 /**
  * 用于演示自定义消息展示
  */
-class CustomMessageActivity : BaseActivityVB<ActivityIntentBinding>() {
+class CustomMessageActivity34X : BaseActivityVB<ActivityIntentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         onIntent(intent)

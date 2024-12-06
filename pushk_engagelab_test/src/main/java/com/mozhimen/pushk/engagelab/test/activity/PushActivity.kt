@@ -58,7 +58,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
     }
 
     override fun onDestroy() {
-        StatusObserver.getInstance().removeListener()
+        StatusObserver.instance?.removeListener()
         super.onDestroy()
     }
 
@@ -230,7 +230,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
             MTPushPrivatesApi.turnOffGeofenceSwitch(this)
             vb.switchGeofence.setChecked(false)
         }
-        StatusObserver.getInstance().addListener(this)
+        StatusObserver.instance?.addListener(this)
     }
 
     override fun onConnectStatus(status: Boolean) {

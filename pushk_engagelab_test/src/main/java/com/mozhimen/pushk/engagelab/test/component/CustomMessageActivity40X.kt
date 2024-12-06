@@ -21,7 +21,7 @@ import org.json.JSONObject
  * 确保没有调用[MTPushPrivatesApi.configOldPushVersion]，否则通知点击跳转不会跳转到此页面
  * 不需要调用[MTPushPrivatesApi.reportNotificationOpened]，sdk内部已做处理
  */
-class UserActivity400 : BaseActivityVB<ActivityIntentBinding>() {
+class CustomMessageActivity40X : BaseActivityVB<ActivityIntentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         onIntent(intent)

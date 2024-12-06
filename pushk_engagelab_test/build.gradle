@@ -78,17 +78,16 @@ dependencies {
     // 引用libs/aar包
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
+    implementation project(':pushk_engagelab')
+
     // google push need
-    // implementation 'com.google.firebase:firebase-messaging:23.2.0'
+    implementation project(':pushk_engagelab_google')
 
     // huawei push need
-    //implementation 'com.huawei.hms:push:6.11.0.300'
-
+    implementation project(':pushk_engagelab_huawei')
 
     //oppo以下依赖都需要添加，不需要 oppo 通道，则删除
-    //    implementation 'com.google.code.gson:gson:2.8.9'
-    //    implementation 'commons-codec:commons-codec:1.13'
-    //    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation project(':pushk_engagelab_oppo')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

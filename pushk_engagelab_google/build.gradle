@@ -32,7 +32,7 @@ android {
 
 dependencies {
     //可选，google厂商
-    implementation 'com.engagelab.plugin:google:4.5.1' // 此处以4.3.9 版本为例。
+    api 'com.engagelab.plugin:google:4.5.1' // 此处以4.3.9 版本为例。
     // google push need
     api project(':ALibKit_Google:firebase_messaging')
 
