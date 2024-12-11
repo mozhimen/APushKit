@@ -3,11 +3,12 @@ package com.mozhimen.pushk.engagelab.test.component
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Toast
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.kotlin.utilk.org.json.jSONObject2strDump
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityIntentBinding
-import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 import org.json.JSONObject
 
 /**
@@ -35,7 +36,7 @@ class CustomMessageActivity39X : BaseActivityVB<ActivityIntentBinding>() {
 
     private fun onIntent(intent: Intent?) {
         try {
-            Toast.makeText(this.applicationContext, TAG, Toast.LENGTH_SHORT).show()
+            TAG.showToast()
             if (intent == null) {
                 return
             }
@@ -57,8 +58,8 @@ class CustomMessageActivity39X : BaseActivityVB<ActivityIntentBinding>() {
                 return
             }
             val messageJson = JSONObject(platformMessage)
-            ExampleLogger.d(TAG, "notificationMessage:" + ExampleLogger.toLogString(messageJson))
-            vb.tvMessage.text = toLogString(messageJson)
+            UtilKLogWrapper.d(TAG, "notificationMessage:" + messageJson)
+            vb.tvMessage.text = messageJson.jSONObject2strDump()
             // 解析
             val messageId = messageJson.optString("msg_id")
             val platform = messageJson.optInt("rom_type").toByte()
@@ -68,19 +69,7 @@ class CustomMessageActivity39X : BaseActivityVB<ActivityIntentBinding>() {
             MTPushPrivatesApi.reportNotificationOpened(this, messageId, platform, "")
         } catch (throwable: Throwable) {
             throwable.printStackTrace()
-            ExampleLogger.w(TAG, "onIntent failed " + throwable.message)
-        }
-    }
-
-    fun toLogString(json: JSONObject?): String {
-        if (json == null) {
-            return "null"
-        }
-        try {
-            val ret = json.toString(2)
-            return System.getProperty("line.separator") + ret
-        } catch (throwable: Throwable) {
-            return json.toString()
+            UtilKLogWrapper.w(TAG, "onIntent failed " + throwable.message)
         }
     }
 }

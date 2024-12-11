@@ -12,4 +12,4 @@ import com.mozhimen.pushk.engagelab.cons.CBuild
  */
 @AManifestRequire(CBuild.ManifestPlaceholders)
 @RequiresOptIn("The api is must add < addManifestPlaceholders > to your app/ build.gradle. 这个Api需要将addManifestPlaceholders的几个配置加到你app/目录下的build.gradle里", RequiresOptIn.Level.WARNING)
-annotation class OBuildApp_NeedManifestPlaceholders()
+annotation class OBuildApp_NeedManifestPlaceholders

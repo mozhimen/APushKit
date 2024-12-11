@@ -28,13 +28,14 @@
 
         <!-- 用于接收Engagelab业务的回调，包含了长连接状态/通知开关状态/通知消息到达/通知消息点击/通知消息删除/自定义消息/厂商token回调 -->
         <!-- 不需要配置子进程，此回调中在主进程中，方便业务操作 -->
-<!--        <receiver
+        <receiver
             android:name=".impls.PushKEngagelabReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.engagelab.privates.intent.USER_RECEIVER" />
             </intent-filter>
-        </receiver>-->
+        </receiver>
+
 
         <!--/////////////////////////////////////////////////////////////////////////////////////-->
         <!---->
@@ -64,8 +65,9 @@
         <!--/////////////////////////////////////////////////////////////////////////////////////-->
 
         <!--白名单本地中转验证:MTPush4.2.3版本开始,配置ENGAGELAB_PRIVATES_TRANSFER后,sdk会做本地验证;不配置就不做本地验证。如果开启本地验证，请将要跳转的目标Activity配置在这里;如果有多个目标Activity,请用/分割开。-->
-        <meta-data
-            android:name="ENGAGELAB_PRIVATES_TRANSFER"
-            android:value="com.mozhimen.pushk.engagelab.impls.PushKEngagelabActivity" />
+        <!--        <meta-data-->
+        <!--            android:name="ENGAGELAB_PRIVATES_TRANSFER"-->
+        <!--            android:value="com.engagelab.app.component.UserActivity400" />-->
+
     </application>
 </manifest>

@@ -90,7 +90,6 @@ dependencies {
     // huawei push need
     //implementation 'com.huawei.hms:push:6.11.0.300'
 
-
     //oppo以下依赖都需要添加，不需要 oppo 通道，则删除
     //    implementation 'com.google.code.gson:gson:2.8.9'
     //    implementation 'commons-codec:commons-codec:1.13'

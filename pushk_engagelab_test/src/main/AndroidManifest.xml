@@ -21,23 +21,32 @@
             </intent-filter>
         </activity>
 
-        <!--        &lt;!&ndash; 用于演示保活MTKeepalive的功能 &ndash;&gt;-->
-        <!--        <activity-->
-        <!--            android:name="com.engagelab.app.activity.KeepaliveActivity"-->
-        <!--            android:exported="false"-->
-        <!--            android:windowSoftInputMode="adjustUnspecified|stateHidden" />-->
-
         <!-- 用于演示MTPush的功能 -->
         <activity
             android:name="com.mozhimen.pushk.engagelab.test.activity.PushActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
+        <!--        &lt;!&ndash; 用于演示保活MTKeepalive的功能 &ndash;&gt;-->
+        <!--        <activity-->
+        <!--            android:name="com.engagelab.app.activity.KeepaliveActivity"-->
+        <!--            android:exported="false"-->
+        <!--            android:windowSoftInputMode="adjustUnspecified|stateHidden" />-->
+
+
+        <!--/////////////////////////////////////////////////////////////////////////////////////-->
+        <!--//分割//-->
+        <!--/////////////////////////////////////////////////////////////////////////////////////-->
 
         <!-- 用于演示MTPush4.0.0版本开始的通知点击跳转 -->
         <activity
             android:name="com.mozhimen.pushk.engagelab.test.component.CustomMessageActivity40X"
             android:exported="false" /> <!--exported不需要为true，sdk内部已做中转 -->
+
+        <!-- 用于演示自定义消息展示 -->
+        <activity
+            android:name="com.mozhimen.pushk.engagelab.test.component.CustomMessageActivity34X"
+            android:exported="false" />
 
         <!-- 用于演示deepLink的通知点击跳转 -->
         <!--        <activity-->
@@ -52,25 +61,5 @@
         <!--            </intent-filter>-->
         <!--        </activity>-->
         <!--exported不需要为true，sdk内部已做中转 -->
-
-        <!--白名单本地中转验证:MTPush4.2.3版本开始,配置ENGAGELAB_PRIVATES_TRANSFER后,sdk会做本地验证;不配置就不做本地验证。如果开启本地验证，请将要跳转的目标Activity配置在这里;如果有多个目标Activity,请用/分割开。-->
-        <!--        <meta-data-->
-        <!--            android:name="ENGAGELAB_PRIVATES_TRANSFER"-->
-        <!--            android:value="com.engagelab.app.component.UserActivity400" />-->
-
-        <!-- 用于演示自定义消息展示 -->
-        <activity
-            android:name="com.mozhimen.pushk.engagelab.test.component.CustomMessageActivity34X"
-            android:exported="false" />
-
-        <!-- 用于接收Engagelab业务的回调，包含了长连接状态/通知开关状态/通知消息到达/通知消息点击/通知消息删除/自定义消息/tag操作/alias操作/厂商token回调 -->
-        <!-- 不需要配置子进程，此回调中在主进程中，方便业务操作 -->
-        <receiver
-            android:name="com.mozhimen.pushk.engagelab.test.component.UserReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.engagelab.privates.intent.USER_RECEIVER" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>

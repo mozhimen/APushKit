@@ -1,17 +1,18 @@
 package com.mozhimen.pushk.engagelab.test.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
-import android.widget.Toast
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.engagelab.privates.push.api.NotificationLayout
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.pushk.engagelab.PushKEngagelab
+import com.mozhimen.pushk.engagelab.commons.IMTCommonListener
+import com.mozhimen.pushk.engagelab.cons.CPushKEngagelabCons
 import com.mozhimen.pushk.engagelab.test.R
-import com.mozhimen.pushk.engagelab.test.common.ExampleGlobal
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityPushBinding
-import com.mozhimen.pushk.engagelab.test.listener.OnStatusListener
-import com.mozhimen.pushk.engagelab.test.listener.StatusObserver
 
 /**
  * @ClassName PushActivity
@@ -23,7 +24,7 @@ import com.mozhimen.pushk.engagelab.test.listener.StatusObserver
 /**
  * 用于演示MTPush功能
  */
-class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
+class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
     private var tag: String = ""
     private var alias: String = ""
     private var showBeginHour = 0
@@ -58,7 +59,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
     }
 
     override fun onDestroy() {
-        StatusObserver.instance?.removeListener()
+        PushKEngagelab.instance.removeMTCommonListener(this)
         super.onDestroy()
     }
 
@@ -68,7 +69,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
         vb.btnSetNotificationLayout.setOnClickListener {
             val text: Editable = vb.etNotificationLayout.getText()
             if (TextUtils.isEmpty(text)) {
-                Toast.makeText(this, "内容为空", Toast.LENGTH_SHORT).show()
+                "内容为空".showToast()
                 return@setOnClickListener
             }
             val builderId = text.toString().toInt()
@@ -78,20 +79,20 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
                 .setIconResourceId(R.drawable.mtpush_notification_icon)
                 .setTitleViewId(R.id.tv_notification_title)
                 .setContentViewId(R.id.tv_notification_content)
-                .setTimeViewId(R.id.tv_notification_time)
+//                .setTimeViewId(R.id.tv_notification_time)
             MTPushPrivatesApi.setNotificationLayout(this.applicationContext, builderId, notificationLayout)
         }
         vb.btnResetNotificationLayout.setOnClickListener {
             try {
                 val texts: Editable = vb.etNotificationLayout.getText()
                 if (TextUtils.isEmpty(texts)) {
-                    Toast.makeText(this, "内容为空", Toast.LENGTH_SHORT).show()
+                    "内容为空".showToast()
                     return@setOnClickListener
                 }
                 val resetNotificationLayoutId = texts.toString().toInt()
                 MTPushPrivatesApi.resetNotificationLayout(this.applicationContext, resetNotificationLayoutId)
             } catch (e: Exception) {
-                Toast.makeText(this.applicationContext, "请设置正确的自定义通知布局id", Toast.LENGTH_SHORT).show()
+                "请设置正确的自定义通知布局id".showToast()
             }
         }
     }
@@ -161,57 +162,57 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
         vb.btnAddTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.addTag(this, ExampleGlobal.TAG_ADD, tag)
+                MTPushPrivatesApi.addTag(this, CPushKEngagelabCons.TAG_ADD, tag)
             } else {
-                Toast.makeText(this.applicationContext, "tag is empty, can't add tag", Toast.LENGTH_SHORT).show()
+                "tag is empty, can't add tag".showToast()
             }
         }
         vb.btnDeleteTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.deleteTag(this, ExampleGlobal.TAG_DELETE, tag)
+                MTPushPrivatesApi.deleteTag(this, CPushKEngagelabCons.TAG_DELETE, tag)
             } else {
-                Toast.makeText(this.applicationContext, "tag is empty, can't delete tag", Toast.LENGTH_SHORT).show()
+                "tag is empty, can't delete tag".showToast()
             }
         }
         vb.btnUpdateTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.updateTag(this, ExampleGlobal.TAG_UPDATE, tag)
+                MTPushPrivatesApi.updateTag(this, CPushKEngagelabCons.TAG_UPDATE, tag)
             } else {
-                Toast.makeText(this.applicationContext, "tag is empty, can't update tag", Toast.LENGTH_SHORT).show()
+                "tag is empty, can't update tag".showToast()
             }
         }
         vb.btnQueryTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.queryTag(this, ExampleGlobal.TAG_QUERY, tag)
+                MTPushPrivatesApi.queryTag(this, CPushKEngagelabCons.TAG_QUERY, tag)
             } else {
-                Toast.makeText(this.applicationContext, "tag is empty, can't query tag", Toast.LENGTH_SHORT).show()
+                "tag is empty, can't query tag".showToast()
             }
         }
         vb.btnDeleteAllTag.setOnClickListener {
-            MTPushPrivatesApi.deleteAllTag(this, ExampleGlobal.TAG_DELETE_ALL)
+            MTPushPrivatesApi.deleteAllTag(this, CPushKEngagelabCons.TAG_DELETE_ALL)
         }
         vb.btnQueryAllTag.setOnClickListener {
-            MTPushPrivatesApi.queryAllTag(this, ExampleGlobal.TAG_QUERY_ALL)
+            MTPushPrivatesApi.queryAllTag(this, CPushKEngagelabCons.TAG_QUERY_ALL)
         }
         vb.btnSetAlias.setOnClickListener {
             alias = vb.etAlias.getText().toString()
         }
         vb.btnGetAlias.setOnClickListener{
             alias = vb.etAlias.getText().toString()
-            MTPushPrivatesApi.getAlias(this, ExampleGlobal.ALIAS_GET)
+            MTPushPrivatesApi.getAlias(this, CPushKEngagelabCons.ALIAS_GET)
         }
         vb.btnClearAlias.setOnClickListener{
-            MTPushPrivatesApi.clearAlias(this, ExampleGlobal.ALIAS_CLEAR)
+            MTPushPrivatesApi.clearAlias(this, CPushKEngagelabCons.ALIAS_CLEAR)
         }
     }
 
     private fun initState() {
-        vb.switchNotification.setChecked(ExampleGlobal.isNotificationEnable)
-        vb.switchConnect.setChecked(ExampleGlobal.isConnectEnable)
-        vb.switchGeofence.setChecked(ExampleGlobal.isConnectEnable)
+        vb.switchNotification.setChecked(PushKEngagelab.instance.isNotificationEnable)
+        vb.switchConnect.setChecked(PushKEngagelab.instance.isConnectEnable)
+        vb.switchGeofence.setChecked(PushKEngagelab.instance.isConnectEnable)
 
         vb.btnGo2NotificationSetting.setOnClickListener {
             MTPushPrivatesApi.goToAppNotificationSettings(this)
@@ -230,14 +231,14 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), OnStatusListener {
             MTPushPrivatesApi.turnOffGeofenceSwitch(this)
             vb.switchGeofence.setChecked(false)
         }
-        StatusObserver.instance?.addListener(this)
+        PushKEngagelab.instance.addMTCommonListener(this)
     }
 
-    override fun onConnectStatus(status: Boolean) {
-        vb.switchNotification.setChecked(status)
+    override fun onConnectStatus(context: Context, enable: Boolean, registrationId: String?) {
+        vb.switchNotification.setChecked(enable)
     }
 
-    override fun onNotificationStatus(status: Boolean) {
-        vb.switchConnect.setChecked(status)
+    override fun onNotificationStatus(context: Context, enable: Boolean) {
+        vb.switchConnect.setChecked(enable)
     }
 }

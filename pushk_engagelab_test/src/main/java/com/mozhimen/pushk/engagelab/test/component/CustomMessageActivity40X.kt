@@ -2,11 +2,12 @@ package com.mozhimen.pushk.engagelab.test.component
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.kotlin.utilk.org.json.jSONObject2strDump
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityIntentBinding
-import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 import org.json.JSONObject
 
 /**
@@ -25,25 +26,25 @@ class CustomMessageActivity40X : BaseActivityVB<ActivityIntentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         onIntent(intent)
-        ExampleLogger.d(TAG, "onCreate")
+        UtilKLogWrapper.d(TAG, "onCreate")
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         onIntent(intent)
-        ExampleLogger.d(TAG, "onNewIntent")
+        UtilKLogWrapper.d(TAG, "onNewIntent")
     }
 
     private fun onIntent(intent: Intent?) {
         try {
-            Toast.makeText(applicationContext, TAG, Toast.LENGTH_SHORT).show()
+            TAG.showToast()
             if (intent == null) {
                 return
             }
             val notificationMessage = intent.getStringExtra("message_json") ?: return
-            val toLogString = ExampleLogger.toLogString(JSONObject(notificationMessage))
-            ExampleLogger.d(TAG, "notificationMessage:$toLogString")
-            vb.tvMessage.text = toLogString
+            val jsonString = JSONObject(notificationMessage).jSONObject2strDump()
+            UtilKLogWrapper.d(TAG, "notificationMessage:$jsonString")
+            vb.tvMessage.text = jsonString
         } catch (e: Throwable) {
             e.printStackTrace()
         }

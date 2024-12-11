@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.mozhimen.pushk.engagelab.test"
         minSdk 21
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -22,26 +22,26 @@ android {
 
         manifestPlaceholders = [
                 // appKey，需要与控制台上的一样，与packageName是一对一关系
-                ENGAGELAB_PRIVATES_APPKEY : "你的appkey",
+                ENGAGELAB_PRIVATES_APPKEY : "13e0ae4ff2c6c6d0c395f2a4",
                 // engagelab appChannel，用于渠道统计
                 ENGAGELAB_PRIVATES_CHANNEL: "developer",
                 // engagelab process，engagelab sdk工作所在的进程，注意:开头
                 ENGAGELAB_PRIVATES_PROCESS: ":remote",
-                // mi client 配置，需要与小米控制台上的一样，还需要在Portal控制台配置 server 配置
-                XIAOMI_APPID              : "",//MI-您的，对应平台信息
-                XIAOMI_APPKEY             : "",//MI-您的，对应平台信息
-                // mz client 配置，需要与魅族控制台上的一样，还需要在Portal控制台配置 server 配置
-                MEIZU_APPID               : "",//MZ-您的，对应平台信息
-                MEIZU_APPKEY              : "",//MZ-您的，对应平台信息
-                // oppo client 配置，需要与oppo控制台上的一样，还需要在Portal控制台配置 server 配置
-                OPPO_APPID                : "",//OP-您的，对应平台信息
-                OPPO_APPKEY               : "",//OP-您的，对应平台信息
-                OPPO_APPSECRET            : "",//OP-您的，对应平台信息
-                // vivo client 配置，需要与vivo控制台上的一样，还需要在Portal控制台配置 server 配置
-                VIVO_APPID                : "",
-                VIVO_APPKEY               : "",
-                // honor client 配置，需要与honor控制台上的一样，还需要在Portal控制台配置 server 配置
-                HONOR_APPID               : ""
+//                // mi client 配置，需要与小米控制台上的一样，还需要在Portal控制台配置 server 配置
+//                XIAOMI_APPID              : "",//MI-您的，对应平台信息
+//                XIAOMI_APPKEY             : "",//MI-您的，对应平台信息
+//                // mz client 配置，需要与魅族控制台上的一样，还需要在Portal控制台配置 server 配置
+//                MEIZU_APPID               : "",//MZ-您的，对应平台信息
+//                MEIZU_APPKEY              : "",//MZ-您的，对应平台信息
+//                // oppo client 配置，需要与oppo控制台上的一样，还需要在Portal控制台配置 server 配置
+//                OPPO_APPID                : "",//OP-您的，对应平台信息
+//                OPPO_APPKEY               : "",//OP-您的，对应平台信息
+//                OPPO_APPSECRET            : "",//OP-您的，对应平台信息
+//                // vivo client 配置，需要与vivo控制台上的一样，还需要在Portal控制台配置 server 配置
+//                VIVO_APPID                : "",
+//                VIVO_APPKEY               : "",
+//                // honor client 配置，需要与honor控制台上的一样，还需要在Portal控制台配置 server 配置
+//                HONOR_APPID               : ""
         ]
     }
 
@@ -56,6 +56,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -76,7 +80,7 @@ android {
 dependencies {
     implementation project(':SwiftKit:bindk')
     // 引用libs/aar包
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     implementation project(':pushk_engagelab')
 

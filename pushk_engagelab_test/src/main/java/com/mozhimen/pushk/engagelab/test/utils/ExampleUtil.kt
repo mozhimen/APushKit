@@ -5,8 +5,9 @@ import android.content.Intent
 import android.text.TextUtils
 import com.engagelab.privates.common.component.MTCommonReceiver
 import com.engagelab.privates.common.component.MTCommonService
+import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManagerWrapper
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.wrapper.UtilKApp
-import com.mozhimen.pushk.engagelab.test.log.ExampleLogger
 
 /**
  * @ClassName ExampleUtil
@@ -53,60 +54,15 @@ object ExampleUtil {
         return appProcess
     }
 
-    // ************************ Engagelab组件 ************************
     fun getCommonServiceName(context: Context): String? {
-        if (!TextUtils.isEmpty(commonServiceName)) {
+        if (!TextUtils.isEmpty(commonServiceName))
             return commonServiceName
-        }
-        try {
-            val intent = Intent()
-            intent.setAction(INTENT_COMMON_SERVICE)
-            intent.setPackage(context.packageName)
-            val resolveInfoList = context.packageManager.queryIntentServices(intent, 0)
-            for (info in resolveInfoList) {
-                val serviceInfo = info.serviceInfo ?: continue
-                val className = serviceInfo.name
-                if (TextUtils.isEmpty(className)) {
-                    continue
-                }
-                val clazz = Class.forName(className)
-                // MTCommonService是clazz的父类
-                if (MTCommonService::class.java.isAssignableFrom(clazz)) {
-                    return clazz.canonicalName.also { commonServiceName = it }
-                }
-            }
-        } catch (throwable: Throwable) {
-            ExampleLogger.w(TAG, "getCommonService failed " + throwable.message)
-        }
-        return ""
+        return UtilKPackageManagerWrapper.getServiceClazzName(context, INTENT_COMMON_SERVICE, MTCommonService::class.java).also { commonServiceName = it }
     }
 
     fun getCommonReceiverName(context: Context): String? {
-        if (!TextUtils.isEmpty(commonReceiverName)) {
+        if (!TextUtils.isEmpty(commonReceiverName))
             return commonReceiverName
-        }
-        try {
-            val intent = Intent()
-            intent.setAction(INTENT_COMMON_RECEIVER)
-            intent.setPackage(context.packageName)
-            val resolveInfoList = context.packageManager.queryBroadcastReceivers(intent, 0)
-            for (info in resolveInfoList) {
-                if (info.activityInfo == null) {
-                    continue
-                }
-                val className = info.activityInfo.name
-                if (TextUtils.isEmpty(className)) {
-                    continue
-                }
-                val clazz = Class.forName(className)
-                // MTCommonReceiver是clazz的父类
-                if (MTCommonReceiver::class.java.isAssignableFrom(clazz)) {
-                    return (clazz.newInstance() as MTCommonReceiver).javaClass.canonicalName.also { commonReceiverName = it }
-                }
-            }
-        } catch (throwable: Throwable) {
-            ExampleLogger.w(TAG, "getCommonReceiver failed " + throwable.message)
-        }
-        return ""
+        return UtilKPackageManagerWrapper.getReceiverClazzName(context, INTENT_COMMON_RECEIVER, MTCommonReceiver::class.java).also { commonReceiverName = it }
     }
 }

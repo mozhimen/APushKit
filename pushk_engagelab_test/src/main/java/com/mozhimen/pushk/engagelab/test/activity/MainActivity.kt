@@ -1,16 +1,19 @@
 package com.mozhimen.pushk.engagelab.test.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Toast
 import com.engagelab.privates.common.log.MTCommonLog
 import com.engagelab.privates.core.api.MTCorePrivatesApi
+import com.engagelab.privates.push.api.CustomMessage
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.kotlin.utilk.android.widget.showToast
+import com.mozhimen.pushk.engagelab.PushKEngagelab
+import com.mozhimen.pushk.engagelab.commons.IMTCommonListener
+import com.mozhimen.pushk.engagelab.test.component.CustomMessageActivity34X
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityMainBinding
-import com.mozhimen.pushk.engagelab.test.listener.OnStatusListener
-import com.mozhimen.pushk.engagelab.test.listener.StatusObserver
 import com.mozhimen.pushk.engagelab.test.utils.ExampleUtil
 
 /**
@@ -23,7 +26,7 @@ import com.mozhimen.pushk.engagelab.test.utils.ExampleUtil
 /**
  * 主要用于初始化
  */
-class MainActivity : BaseActivityVB<ActivityMainBinding>(), OnStatusListener {
+class MainActivity : BaseActivityVB<ActivityMainBinding>(), IMTCommonListener {
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
@@ -31,12 +34,12 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>(), OnStatusListener {
         vb.tvRid.setText(MTCorePrivatesApi.getRegistrationId(this.applicationContext))
 
         // 监听状态变化
-        StatusObserver.getInstance().addListener(this)
+        PushKEngagelab.instance.addMTCommonListener(this)
     }
 
     override fun onPause() {
         // 监听移除
-        StatusObserver.getInstance().removeListener()
+        PushKEngagelab.instance.removeMTCommonListener(this)
         super.onPause()
     }
 
@@ -50,12 +53,12 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>(), OnStatusListener {
         vb.btnPush.setOnClickListener {
             if (TextUtils.isEmpty(ExampleUtil.getCommonServiceName(this.applicationContext))) {
                 MTCommonLog.e(TAG, "userService is null, please create new Service extends MTCommonService")
-                Toast.makeText(this.applicationContext, "userService is null, please create new Service extends MTCommonService", Toast.LENGTH_SHORT).show()
+                "userService is null, please create new Service extends MTCommonService".showToast()
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(ExampleUtil.getCommonReceiverName(this.applicationContext))) {
                 MTCommonLog.e(TAG, "userReceiver is null, please create new BroadcastReceiver extends MTCommonReceiver")
-                Toast.makeText(this.applicationContext, "userReceiver is null, please create new BroadcastReceiver extends MTCommonReceiver", Toast.LENGTH_SHORT).show()
+                "userReceiver is null, please create new BroadcastReceiver extends MTCommonReceiver".showToast()
                 return@setOnClickListener
             }
             val pushIntent = Intent(this, PushActivity::class.java)
@@ -63,13 +66,18 @@ class MainActivity : BaseActivityVB<ActivityMainBinding>(), OnStatusListener {
         }
     }
 
-    override fun onNotificationStatus(status: Boolean) {
-
+    override fun onCustomMessage(context: Context, customMessage: CustomMessage) {
+        // 用于演示自定义消息展示
+        val intent = Intent()
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.setClass(context, CustomMessageActivity34X::class.java)
+        intent.putExtra("message", customMessage)
+        context.startActivity(intent)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onConnectStatus(status: Boolean) {
-        if (status) {
+    override fun onConnectStatus(context: Context, enable: Boolean, registrationId: String?) {
+        if (enable) {
             vb.tvUid.setText(MTCorePrivatesApi.getUserId(this.applicationContext).toString() + "")
             vb.tvRid.setText(MTCorePrivatesApi.getRegistrationId(this.applicationContext))
         }
