@@ -39,7 +39,7 @@ import com.mozhimen.pushk.engagelab.PushKEngagelab
  *     </intent-filter>
  * </receiver>
  */
-class PushKEngagelabReceiver : MTCommonReceiver(), IUtilK {
+open class PushKEngagelabReceiver : MTCommonReceiver(), IUtilK {
 
     override fun onNotificationStatus(context: Context, enable: Boolean) {
         PushKEngagelab.instance.onNotificationStatus(context, enable)

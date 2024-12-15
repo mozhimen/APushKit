@@ -5,6 +5,7 @@ import com.engagelab.privates.core.api.MTCorePrivatesApi
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.mozhimen.pushk.engagelab.PushKEngagelabMgr
 import com.mozhimen.pushk.engagelab.optins.OBuildApp_NeedManifestPlaceholders
+import com.mozhimen.pushk.engagelab.optins.OBuildApp_NeedManifestReceiver
 
 /**
  * @ClassName MainApplication
@@ -17,7 +18,7 @@ import com.mozhimen.pushk.engagelab.optins.OBuildApp_NeedManifestPlaceholders
  * 用于演示ENGAGELAB-sdk配置
  */
 class MainApplication : Application() {
-    @OptIn(OBuildApp_NeedManifestPlaceholders::class)
+    @OptIn(OBuildApp_NeedManifestPlaceholders::class, OBuildApp_NeedManifestReceiver::class)
     override fun onCreate() {
         super.onCreate()
 

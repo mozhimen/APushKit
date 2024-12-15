@@ -35,6 +35,7 @@ include ':pushk_engagelab_othsound'
 include ':pushk_engagelab_test'
 include ':pushk_engagelab_orig'
 include ':pushk_engagelab_mi_inland'
+include ':pushk_engagelab_proguard'
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
@@ -48,9 +49,11 @@ include ':KUtilKit:utilk_kotlin'
 //ALibKit_Huawei
 include ':ALibKit_Huawei'
 project(':ALibKit_Huawei').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Huawei")
+include ':ALibKit_Huawei:basic'
 include ':ALibKit_Huawei:hms_push'
 //ALibKit_Google
 include ':ALibKit_Google'
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
 include ':ALibKit_Google:firebase_messaging'
-include ':pushk_engagelab_proguard'
+include ':ALibKit_Google:firebase_basic'
+

@@ -31,8 +31,8 @@ android {
 }
 
 dependencies {
-    //可选，mi厂商，国内版
-    api 'com.engagelab.plugin:mi_global:4.5.1' // 此处以4.3.9 版本为例。
+    //可选，mi厂商，国内版(国外默认用fcm)
+//    api 'com.engagelab.plugin:mi_global:4.5.1' // 此处以4.3.9 版本为例。
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

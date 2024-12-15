@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
-import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.engagelab.privates.push.api.NotificationLayout
 import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
@@ -13,6 +12,7 @@ import com.mozhimen.pushk.engagelab.commons.IMTCommonListener
 import com.mozhimen.pushk.engagelab.cons.CPushKEngagelabCons
 import com.mozhimen.pushk.engagelab.test.R
 import com.mozhimen.pushk.engagelab.test.databinding.ActivityPushBinding
+import com.mozhimen.pushk.engagelab.utils.UtilKMTPushPrivatesApi
 
 /**
  * @ClassName PushActivity
@@ -38,10 +38,12 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
 
     ////////////////////////////////////////////////////////////////////
 
-    override fun initView(savedInstanceState: Bundle?) {
-        // 初始化
-//        MTPushPrivatesApi.init(this);
+    override fun initLayout() {
+        super.initLayout()
+        PushKEngagelab.instance.addMTCommonListener(this)
+    }
 
+    override fun initView(savedInstanceState: Bundle?) {
         vb.btnBack.setOnClickListener {
             finish()
         }
@@ -57,6 +59,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         initSilenceTime()
         initNotificationLayout()
     }
+
 
     override fun onDestroy() {
         PushKEngagelab.instance.removeMTCommonListener(this)
@@ -80,7 +83,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
                 .setTitleViewId(R.id.tv_notification_title)
                 .setContentViewId(R.id.tv_notification_content)
 //                .setTimeViewId(R.id.tv_notification_time)
-            MTPushPrivatesApi.setNotificationLayout(this.applicationContext, builderId, notificationLayout)
+            UtilKMTPushPrivatesApi.setNotificationLayout(this.applicationContext, builderId, notificationLayout)
         }
         vb.btnResetNotificationLayout.setOnClickListener {
             try {
@@ -90,7 +93,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
                     return@setOnClickListener
                 }
                 val resetNotificationLayoutId = texts.toString().toInt()
-                MTPushPrivatesApi.resetNotificationLayout(this.applicationContext, resetNotificationLayoutId)
+                UtilKMTPushPrivatesApi.resetNotificationLayout(this.applicationContext, resetNotificationLayoutId)
             } catch (e: Exception) {
                 "请设置正确的自定义通知布局id".showToast()
             }
@@ -141,20 +144,20 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
     private fun initSilenceTime() {
         vb.btnSetSilenceTime.setOnClickListener {
             getSilenceTime()
-            MTPushPrivatesApi.setNotificationSilenceTime(this.applicationContext, silenceBeginHour, silenceBeginMinute, silenceEndHour, silenceEndMinute)
+            UtilKMTPushPrivatesApi.setNotificationSilenceTime(this.applicationContext, silenceBeginHour, silenceBeginMinute, silenceEndHour, silenceEndMinute)
         }
         vb.btnResetSilenceTime.setOnClickListener {
-            MTPushPrivatesApi.resetNotificationSilenceTime(this.applicationContext)
+            UtilKMTPushPrivatesApi.resetNotificationSilenceTime(this.applicationContext)
         }
     }
 
     private fun initShowTime() {
         vb.btnSetShowTime.setOnClickListener{
             getShowTime()
-            MTPushPrivatesApi.setNotificationShowTime(this.applicationContext, showBeginHour, showEndHour, showWeekDay)
+            UtilKMTPushPrivatesApi.setNotificationShowTime(this.applicationContext, showBeginHour, showEndHour, showWeekDay)
         }
         vb.btnResetShowTime.setOnClickListener {
-            MTPushPrivatesApi.resetNotificationShowTime(this.applicationContext)
+            UtilKMTPushPrivatesApi.resetNotificationShowTime(this.applicationContext)
         }
     }
 
@@ -162,7 +165,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         vb.btnAddTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.addTag(this, CPushKEngagelabCons.TAG_ADD, tag)
+                UtilKMTPushPrivatesApi.addTag(this, CPushKEngagelabCons.TAG_ADD, tag)
             } else {
                 "tag is empty, can't add tag".showToast()
             }
@@ -170,7 +173,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         vb.btnDeleteTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.deleteTag(this, CPushKEngagelabCons.TAG_DELETE, tag)
+                UtilKMTPushPrivatesApi.deleteTag(this, CPushKEngagelabCons.TAG_DELETE, tag)
             } else {
                 "tag is empty, can't delete tag".showToast()
             }
@@ -178,7 +181,7 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         vb.btnUpdateTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.updateTag(this, CPushKEngagelabCons.TAG_UPDATE, tag)
+                UtilKMTPushPrivatesApi.updateTag(this, CPushKEngagelabCons.TAG_UPDATE, tag)
             } else {
                 "tag is empty, can't update tag".showToast()
             }
@@ -186,26 +189,26 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         vb.btnQueryTag.setOnClickListener {
             tag = vb.etTag.getText().toString()
             if (!TextUtils.isEmpty(tag)) {
-                MTPushPrivatesApi.queryTag(this, CPushKEngagelabCons.TAG_QUERY, tag)
+                UtilKMTPushPrivatesApi.queryTag(this, CPushKEngagelabCons.TAG_QUERY, tag)
             } else {
                 "tag is empty, can't query tag".showToast()
             }
         }
         vb.btnDeleteAllTag.setOnClickListener {
-            MTPushPrivatesApi.deleteAllTag(this, CPushKEngagelabCons.TAG_DELETE_ALL)
+            UtilKMTPushPrivatesApi.deleteAllTag(this, CPushKEngagelabCons.TAG_DELETE_ALL)
         }
         vb.btnQueryAllTag.setOnClickListener {
-            MTPushPrivatesApi.queryAllTag(this, CPushKEngagelabCons.TAG_QUERY_ALL)
+            UtilKMTPushPrivatesApi.queryAllTag(this, CPushKEngagelabCons.TAG_QUERY_ALL)
         }
         vb.btnSetAlias.setOnClickListener {
             alias = vb.etAlias.getText().toString()
         }
         vb.btnGetAlias.setOnClickListener{
             alias = vb.etAlias.getText().toString()
-            MTPushPrivatesApi.getAlias(this, CPushKEngagelabCons.ALIAS_GET)
+            UtilKMTPushPrivatesApi.getAlias(this, CPushKEngagelabCons.ALIAS_GET)
         }
         vb.btnClearAlias.setOnClickListener{
-            MTPushPrivatesApi.clearAlias(this, CPushKEngagelabCons.ALIAS_CLEAR)
+            UtilKMTPushPrivatesApi.clearAlias(this, CPushKEngagelabCons.ALIAS_CLEAR)
         }
     }
 
@@ -215,23 +218,22 @@ class PushActivity : BaseActivityVB<ActivityPushBinding>(), IMTCommonListener {
         vb.switchGeofence.setChecked(PushKEngagelab.instance.isConnectEnable)
 
         vb.btnGo2NotificationSetting.setOnClickListener {
-            MTPushPrivatesApi.goToAppNotificationSettings(this)
+            UtilKMTPushPrivatesApi.goToAppNotificationSettings(this)
         }
         vb.btnTurnOnPush.setOnClickListener {
-            MTPushPrivatesApi.turnOnPush(this)
+            UtilKMTPushPrivatesApi.turnOnPush(this)
         }
         vb.btnTurnOffPush.setOnClickListener {
-            MTPushPrivatesApi.turnOffPush(this)
+            UtilKMTPushPrivatesApi.turnOffPush(this)
         }
         vb.btnTurnOnGeofence.setOnClickListener {
-            MTPushPrivatesApi.turnOnGeofenceSwitch(this)
+            UtilKMTPushPrivatesApi.turnOnGeofenceSwitch(this)
             vb.switchGeofence.setChecked(true)
         }
         vb.btnTurnOffGeofence.setOnClickListener {
-            MTPushPrivatesApi.turnOffGeofenceSwitch(this)
+            UtilKMTPushPrivatesApi.turnOffGeofenceSwitch(this)
             vb.switchGeofence.setChecked(false)
         }
-        PushKEngagelab.instance.addMTCommonListener(this)
     }
 
     override fun onConnectStatus(context: Context, enable: Boolean, registrationId: String?) {

@@ -6,6 +6,7 @@ import com.engagelab.privates.core.api.MTCorePrivatesApi
 import com.engagelab.privates.push.api.MTPushPrivatesApi
 import com.mozhimen.kotlin.utilk.BuildConfig
 import com.mozhimen.pushk.engagelab.optins.OBuildApp_NeedManifestPlaceholders
+import com.mozhimen.pushk.engagelab.optins.OBuildApp_NeedManifestReceiver
 
 /**
  * @ClassName PushKEngagelabMgr
@@ -18,6 +19,7 @@ object PushKEngagelabMgr {
     @JvmStatic
     @AnyThread
     @OBuildApp_NeedManifestPlaceholders
+    @OBuildApp_NeedManifestReceiver
     fun init(context: Context) {
 
         /**

@@ -7,6 +7,7 @@ import com.engagelab.privates.common.component.MTCommonReceiver
 import com.engagelab.privates.common.component.MTCommonService
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManagerWrapper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.wrapper.UtilKApp
 
 /**
@@ -16,9 +17,7 @@ import com.mozhimen.kotlin.utilk.wrapper.UtilKApp
  * @Date 2024/12/6 0:56
  * @Version 1.0
  */
-object ExampleUtil {
-    private const val TAG = "ExampleUtil"
-
+object ExampleUtil : BaseUtilK() {
     private const val APP_KEY = "ENGAGELAB_PRIVATES_APPKEY"
     private const val APP_CHANNEL = "ENGAGELAB_PRIVATES_CHANNEL"
     private const val APP_PROCESS = "ENGAGELAB_PRIVATES_PROCESS"
@@ -33,36 +32,36 @@ object ExampleUtil {
     private var commonServiceName: String? = null
     private var commonReceiverName: String? = null
 
-    fun getAppKey(context: Context): String? {
+    fun getAppKey(): String? {
         if (TextUtils.isEmpty(appKey)) {
-            appKey = UtilKApp.getMetaDataStr(APP_KEY, context = context)
+            appKey = UtilKApp.getMetaDataStr(APP_KEY, context = _context)
         }
         return appKey
     }
 
-    fun getAppChannel(context: Context): String? {
+    fun getAppChannel(): String? {
         if (TextUtils.isEmpty(appChannel)) {
-            appChannel = UtilKApp.getMetaDataStr(APP_CHANNEL, context = context)
+            appChannel = UtilKApp.getMetaDataStr(APP_CHANNEL, context = _context)
         }
         return appChannel
     }
 
-    fun getAppProcess(context: Context): String? {
+    fun getAppProcess(): String? {
         if (TextUtils.isEmpty(appProcess)) {
-            appProcess = UtilKApp.getMetaDataStr(APP_PROCESS, context = context)
+            appProcess = UtilKApp.getMetaDataStr(APP_PROCESS, context = _context)
         }
         return appProcess
     }
 
-    fun getCommonServiceName(context: Context): String? {
+    fun getCommonServiceName(): String? {
         if (!TextUtils.isEmpty(commonServiceName))
             return commonServiceName
-        return UtilKPackageManagerWrapper.getServiceClazzName(context, INTENT_COMMON_SERVICE, MTCommonService::class.java).also { commonServiceName = it }
+        return UtilKPackageManagerWrapper.getServiceClazzName(_context, INTENT_COMMON_SERVICE, MTCommonService::class.java).also { commonServiceName = it }
     }
 
-    fun getCommonReceiverName(context: Context): String? {
+    fun getCommonReceiverName(): String? {
         if (!TextUtils.isEmpty(commonReceiverName))
             return commonReceiverName
-        return UtilKPackageManagerWrapper.getReceiverClazzName(context, INTENT_COMMON_RECEIVER, MTCommonReceiver::class.java).also { commonReceiverName = it }
+        return UtilKPackageManagerWrapper.getReceiverClazzName(_context, INTENT_COMMON_RECEIVER, MTCommonReceiver::class.java).also { commonReceiverName = it }
     }
 }

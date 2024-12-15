@@ -231,8 +231,8 @@ public class PushActivity extends Activity implements View.OnClickListener, OnSt
                     .setIconViewId(R.id.iv_notification_icon)
                     .setIconResourceId(R.drawable.mtpush_notification_icon)
                     .setTitleViewId(R.id.tv_notification_title)
-                    .setContentViewId(R.id.tv_notification_content)
-                    .setTimeViewId(R.id.tv_notification_time);
+                    .setContentViewId(R.id.tv_notification_content);
+//                    .setTimeViewId(R.id.tv_notification_time);
             MTPushPrivatesApi.setNotificationLayout(this.getApplicationContext(), builderId, notificationLayout);
         }else if (view.getId()==R.id.btn_reset_notification_layout){
             try {

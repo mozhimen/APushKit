@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APushKit">
+        <!-- 用于接收Engagelab业务的回调，包含了长连接状态/通知开关状态/通知消息到达/通知消息点击/通知消息删除/自定义消息/厂商token回调 -->
+        <!-- 不需要配置子进程，此回调中在主进程中，方便业务操作 -->
+        <receiver
+            android:name="com.mozhimen.pushk.engagelab.impls.PushKEngagelabReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.engagelab.privates.intent.USER_RECEIVER" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name="com.mozhimen.pushk.engagelab.test.activity.MainActivity"
