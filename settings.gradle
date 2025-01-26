@@ -22,38 +22,51 @@ dependencyResolutionManagement {
 
 rootProject.name = "APushKit"
 include ':app'
-include ':pushk_basic'
-include ':pushk_engagelab'
-include ':pushk_engagelab_google'
-include ':pushk_engagelab_honer'
-include ':pushk_engagelab_huawei'
-include ':pushk_engagelab_mi_global'
-include ':pushk_engagelab_meizu'
-include ':pushk_engagelab_oppo'
-include ':pushk_engagelab_vivo'
-include ':pushk_engagelab_othsound'
-include ':pushk_engagelab_test'
-include ':pushk_engagelab_orig'
-include ':pushk_engagelab_mi_inland'
-include ':pushk_engagelab_proguard'
-//SwiftKit
-include ':SwiftKit'
-project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
-include ':SwiftKit:basick'
-include ':SwiftKit:bindk'
+include ':basic'
+include ':engagelab'
+include ':engagelab:google'
+include ':engagelab:honer'
+include ':engagelab:huawei'
+include ':engagelab:mi_global'
+include ':engagelab:meizu'
+include ':engagelab:oppo'
+include ':engagelab:vivo'
+include ':engagelab:othsound'
+include ':engagelab:test'
+include ':engagelab:orig'
+include ':engagelab:mi_inland'
+//ALibKit_Google
+include ':ALibKit_Google'
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:material'
+include ':ALibKit_Google:firebase:firebase_messaging'
+include ':ALibKit_Google:firebase:firebase_basic'
+//ALibKit_Jetpack
+include ':ALibKit_Jetpack'
+project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
+include ':ALibKit_Jetpack:databinding'
+include ':ALibKit_Jetpack:annotation'
+include ':ALibKit_Jetpack:core'
+//ALibKit_Jetbrains
+include ':ALibKit_Jetbrains'
+project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
+include ':ALibKit_Jetbrains:kotlin_stdlib'
+include ':ALibKit_Jetbrains:kotlinx_coroutines'
 //KUtilKit
 include ':KUtilKit'
 project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
-include ':KUtilKit:utilk_android'
-include ':KUtilKit:utilk_kotlin'
+include ':KUtilKit:android'
+include ':KUtilKit:kotlin'
+//ASwiftKit
+include ':ASwiftKit'
+project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
+include ':ASwiftKit:basick'
+include ':ASwiftKit:bindk'
 //ALibKit_Huawei
 include ':ALibKit_Huawei'
 project(':ALibKit_Huawei').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Huawei")
 include ':ALibKit_Huawei:basic'
 include ':ALibKit_Huawei:hms_push'
-//ALibKit_Google
-include ':ALibKit_Google'
-project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
-include ':ALibKit_Google:firebase_messaging'
-include ':ALibKit_Google:firebase_basic'
+
+
 

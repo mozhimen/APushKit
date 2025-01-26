@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    // google push need，不需要 google 通道，则删除
+    // id 'com.google.gms.google-services'
+    // huawei push need，不需要 huawei 通道，则删除
+    // id 'com.huawei.agconnect'
+}
+
+android {
+    namespace "com.engagelab.app"
+    compileSdk 30
+
+    // google/huawei push need，it needs to be the same as the one on google/huawei console.
+    signingConfigs {
+        debug {
+            storeFile file("x.keystore")
+            storePassword "xxxtb123"
+            keyAlias "my-key-alias"
+            keyPassword "xxxtb123"
+        }
+        release {
+            storeFile file("x.keystore")
+            storePassword "xxxtb123"
+            keyAlias "my-key-alias"
+            keyPassword "xxxtb123"
+        }
+    }
+
+    defaultConfig {
+        // app packageName，需要与控制台上的一样
+        applicationId "com.engagelab.app"
+        minSdk 19
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        manifestPlaceholders = [
+                // appKey，需要与控制台上的一样，与packageName是一对一关系
+                ENGAGELAB_PRIVATES_APPKEY : "你的appkey",
+                // engagelab appChannel，用于渠道统计
+                ENGAGELAB_PRIVATES_CHANNEL: "developer",
+                // engagelab process，engagelab sdk工作所在的进程，注意:开头
+                ENGAGELAB_PRIVATES_PROCESS: ":remote",
+                // mi client 配置，需要与小米控制台上的一样，还需要在Portal控制台配置 server 配置
+                XIAOMI_APPID            : "",//MI-您的，对应平台信息
+                XIAOMI_APPKEY           : "",//MI-您的，对应平台信息
+                // mz client 配置，需要与魅族控制台上的一样，还需要在Portal控制台配置 server 配置
+                MEIZU_APPID             : "",//MZ-您的，对应平台信息
+                MEIZU_APPKEY            : "",//MZ-您的，对应平台信息
+                // oppo client 配置，需要与oppo控制台上的一样，还需要在Portal控制台配置 server 配置
+                OPPO_APPID              : "",//OP-您的，对应平台信息
+                OPPO_APPKEY             : "",//OP-您的，对应平台信息
+                OPPO_APPSECRET          : "",//OP-您的，对应平台信息
+                // vivo client 配置，需要与vivo控制台上的一样，还需要在Portal控制台配置 server 配置
+                VIVO_APPID              : "",
+                VIVO_APPKEY             : "",
+                // honor client 配置，需要与honor控制台上的一样，还需要在Portal控制台配置 server 配置
+                HONOR_APPID             : ""
+        ]
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            // 混淆参考proguard-rules.pro
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            // 混淆参考proguard-rules.pro
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // google push need java 1.8，不需要 google 通道，则删除
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    // 引用libs/aar包
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
+    // google push need
+    // implementation 'com.google.firebase:firebase-messaging:23.2.0'
+
+    // huawei push need
+    //implementation 'com.huawei.hms:push:6.11.0.300'
+
+    //oppo以下依赖都需要添加，不需要 oppo 通道，则删除
+    //    implementation 'com.google.code.gson:gson:2.8.9'
+    //    implementation 'commons-codec:commons-codec:1.13'
+    //    implementation project(":ALibKit_Jetpack:annotation")
+}
