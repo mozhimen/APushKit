@@ -8,8 +8,8 @@ import android.text.TextUtils
 import com.engagelab.privates.common.log.MTCommonLog
 import com.engagelab.privates.core.api.MTCorePrivatesApi
 import com.engagelab.privates.push.api.CustomMessage
-import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVBVM
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDBVM
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVBVM
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDBVM
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.widget.showToast

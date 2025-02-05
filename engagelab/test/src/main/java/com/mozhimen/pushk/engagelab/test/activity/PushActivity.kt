@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import com.engagelab.privates.push.api.NotificationLayout
-import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
 import com.mozhimen.pushk.engagelab.PushKEngagelab
 import com.mozhimen.pushk.engagelab.commons.IMTCommonListener

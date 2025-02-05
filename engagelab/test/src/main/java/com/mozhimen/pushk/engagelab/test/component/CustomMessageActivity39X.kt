@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import com.engagelab.privates.push.api.MTPushPrivatesApi
-import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.widget.showToast
 import com.mozhimen.kotlin.utilk.org.json.jSONObject2strDump

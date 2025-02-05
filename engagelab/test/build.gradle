@@ -84,7 +84,7 @@ android {
 }
 
 dependencies {
-    implementation project(':ASwiftKit:bindk')
+    implementation project(':ASwiftKit:uik:databinding')
     // 引用libs/aar包
 //    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 

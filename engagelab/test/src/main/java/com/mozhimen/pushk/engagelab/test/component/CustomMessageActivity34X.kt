@@ -3,7 +3,7 @@ package com.mozhimen.pushk.engagelab.test.component
 import android.content.Intent
 import android.os.Bundle
 import com.engagelab.privates.push.api.CustomMessage
-import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.content.gainParcelableExtra
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.widget.showToast
