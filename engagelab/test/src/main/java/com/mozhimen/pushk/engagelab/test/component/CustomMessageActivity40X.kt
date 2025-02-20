@@ -29,7 +29,7 @@ class CustomMessageActivity40X : BaseActivityVB<ActivityIntentBinding>() {
         UtilKLogWrapper.d(TAG, "onCreate")
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         onIntent(intent)
         UtilKLogWrapper.d(TAG, "onNewIntent")

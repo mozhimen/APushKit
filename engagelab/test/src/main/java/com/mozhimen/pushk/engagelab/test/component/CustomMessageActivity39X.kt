@@ -29,7 +29,7 @@ class CustomMessageActivity39X : BaseActivityVB<ActivityIntentBinding>() {
         onIntent(intent)
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         onIntent(intent)
     }
