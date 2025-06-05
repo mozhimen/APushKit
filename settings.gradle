@@ -21,20 +21,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "APushKit"
-include ':app'
-include ':basic'
-include ':engagelab'
-include ':engagelab:google'
-include ':engagelab:honer'
-include ':engagelab:huawei'
-include ':engagelab:mi_global'
-include ':engagelab:meizu'
-include ':engagelab:oppo'
-include ':engagelab:vivo'
-include ':engagelab:othsound'
-include ':engagelab:test'
-include ':engagelab:orig'
-include ':engagelab:mi_inland'
 //ALibKit_Google
 include ':ALibKit_Google'
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
@@ -61,12 +47,32 @@ include ':KUtilKit:kotlin'
 include ':ASwiftKit'
 project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
 include ':ASwiftKit:basick'
+include ':ASwiftKit:xmlk'
 include ':ASwiftKit:uik:databinding'
 //ALibKit_Huawei
 include ':ALibKit_Huawei'
 project(':ALibKit_Huawei').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Huawei")
 include ':ALibKit_Huawei:basic'
 include ':ALibKit_Huawei:hms_push'
-
-
-
+//ALibKit_Umeng
+include ':ALibKit_Umeng'
+project(':ALibKit_Umeng').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Umeng")
+include ':ALibKit_Umeng:push'
+//
+include ':app'
+include ':basic'
+include ':engagelab'
+include ':engagelab:google'
+include ':engagelab:honer'
+include ':engagelab:huawei'
+include ':engagelab:mi_global'
+include ':engagelab:meizu'
+include ':engagelab:oppo'
+include ':engagelab:vivo'
+include ':engagelab:othsound'
+include ':engagelab:test'
+include ':engagelab:orig'
+include ':engagelab:mi_inland'
+include ':umeng'
+include ':huawei'
+include ':google'
