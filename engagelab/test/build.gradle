@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace 'com.mozhimen.pushk.engagelab.test'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.mozhimen.pushk.engagelab.test"
