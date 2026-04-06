@@ -1,6 +1,6 @@
 package com.mozhimen.pushk.umeng
 
-import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_InApplication
 import com.mozhimen.libk.umeng.push.UmengPushMgr
 
 /**
