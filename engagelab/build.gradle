@@ -33,7 +33,7 @@ android {
 dependencies {
     //必须 主包
     api 'com.engagelab:engagelab:4.5.1' // 此处以4.3.9 版本为例。
-    implementation project(':KUtilKit:android')
+    implementation 'com.github.mozhimen.KUtilKit:android:0.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

@@ -34,7 +34,7 @@ dependencies {
     //可选，google厂商
     api 'com.engagelab.plugin:google:4.5.1' // 此处以4.3.9 版本为例。
     // google push need
-    api project(':ALibKit_Google:firebase:firebase_messaging')
+    api 'com.github.mozhimen.ALibKit_Google:firebase-firebase_messaging:0.0.5'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
