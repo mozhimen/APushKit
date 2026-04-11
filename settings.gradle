@@ -27,12 +27,6 @@ project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit
 include ':ALibKit_Google:material'
 include ':ALibKit_Google:firebase:firebase_messaging'
 include ':ALibKit_Google:firebase:firebase_basic'
-//ALibKit_Jetpack
-include ':ALibKit_Jetpack'
-project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
-include ':ALibKit_Jetpack:databinding'
-include ':ALibKit_Jetpack:annotation'
-include ':ALibKit_Jetpack:core'
 //ALibKit_Jetbrains
 include ':ALibKit_Jetbrains'
 project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
