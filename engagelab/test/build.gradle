@@ -91,10 +91,10 @@ dependencies {
     implementation project(':engagelab')
 
     // google push need
-    implementation project('::engagelab:google')
+    implementation project(':engagelab-google')
 
     // huawei push need
-    implementation project('::engagelab:huawei')
+    implementation project(':engagelab-huawei')
 
     //oppo以下依赖都需要添加，不需要 oppo 通道，则删除
 //    implementation project('::engagelab:oppo')

@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.pushk.engagelab.oppo'
+    namespace 'com.mozhimen.pushk.engagelab.huawei'
     compileSdk 35
 
     defaultConfig {
         minSdk 19
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,13 +31,10 @@ android {
 }
 
 dependencies {
-    api 'com.engagelab.plugin:oppo:4.5.1' // 此处以4.3.9 版本为例。
-    api 'com.engagelab.plugin:oppo_th_push:4.5.1' // 此处以4.3.9 版本为例。
-
-    //oppo以下依赖都需要添加，不需要 oppo 通道，则删除
-    implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'commons-codec:commons-codec:1.13'
-    implementation project(":ALibKit_Jetpack:annotation")
+    //可选，huawei厂商
+    api 'com.engagelab.plugin:huawei:4.5.1' // 此处以4.3.9 版本为例。
+    // huawei push need
+    api 'com.github.mozhimen.ALibKit_Huawei:hms-push:0.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
