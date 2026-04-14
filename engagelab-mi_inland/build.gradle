@@ -31,6 +31,7 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+//    api 'com.mt.sdk.mi:mt-sdk-mi:4.5.1@aar'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
